@@ -3,7 +3,7 @@ import subprocess
 from gtts import gTTS
 from tempfile import NamedTemporaryFile
 
-from .bot import Plugin
+from stormbot.bot import Plugin
 
 
 class Say(Plugin):
