@@ -21,7 +21,10 @@ class Say(Plugin):
         subparser.add_argument("--lang", type=str, default=self.lang, help="Say lang (default: %(default)s)")
         subparser.add_argument("text", type=str, help="Text to say")
 
-    def run(self, msg, parser, args):
+    def run(self, msg, parser, args, peer):
+        if not peer:
+            for peer in self._bot.get_peers(self):
+                self._bot.peer_send_command(self, peer, msg)
         tts = gTTS(text=args.text, lang=args.lang)
         with NamedTemporaryFile() as f:
             tts.write_to_fp(f)
