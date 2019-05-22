@@ -25,8 +25,6 @@ class Say(Plugin):
         if peer is None:
             for peer in self._bot.get_peers(self):
                 self._bot.peer_forward_msg(self, peer, msg)
-        else:
-            raise Exception("test error message")
 
         tts = gTTS(text=args.text, lang=args.lang)
         with NamedTemporaryFile() as f:
