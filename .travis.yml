@@ -1,6 +1,7 @@
+dist: xenial
 language: python
 python:
-  - '3.6'
+  - '3.7'
 install:
   - pip install twine
 script:
@@ -14,5 +15,5 @@ deploy:
     secure: r5o4MDy04elxkWcFJ5gB7ZsC4s9sAwZWTf3LTMrjenP2iEIH9DcclSvxIeDnmNJj6tp6agA91XJC4A5LzWGQG9HQXDVk2/WloxXMXoPTLSFnsm4jJkjrhpCib4gNXOyhBi6Le8na0viZr+0pN36cVLizFqF1H7vvgSjQ1XSNzq0/DSI6iSTES3W8fZy15JRwZw4gaa1JqYVyofAtRTZ+y8kXcJ7kGvZwO9LyFppQxNQcQ9oGCZGyvV1vUoPT8wsVypQReZ0gs9sfI3OiTFlPJOdZNPcKPSmeXjH4x6+eLboYvX6gKXI2DJgchQi4p7DOS3aOho8AIz4njX0hO3yZMyUkt5vPavc32S/qNOElTks3rgG8pbUlFG7KJvgG8cNg43m0AXdODIz/8QWTh+VLIJV4PI8OxCltjrk5MHLlUyowGmTTCgh21s8OnwJhFwN1kulwxYBg9f4AavQxFq8B3P6uAKbZTeKDHrgGLTU2gRXif7mG0b/zXxGWyqPLnHGYo5ZfnA60Hp5ki7Nu0iE0IzUGq6lMIdMuyEsqihBfT7xCqSSYSAM3VaH2wBqjCmkNIwEIA/2/WrmsUCD/LKgi286e2H1TZ+4rR9npxottGX1/P0N4h+ECqKCczoC8XzUu6EpoJKGcB1C7cuy8MNdPCy35QiDmTbakz+BVSx0iMe8=
   on:
     tags: true
-    python: '3.6'
+    python: '3.7'
   skip_existing: true
