@@ -10,10 +10,12 @@ class Say(Plugin):
     def __init__(self, bot, args):
         self._bot = bot
         self.lang = args.say_lang
+        self.tts = not args.no_tts
 
     @classmethod
     def argparser(cls, parser):
         parser.add_argument("--say-lang", type=str, default="fr", help="Say lang (default: %(default)s)")
+        parser.add_argument("--no-tts", action="store_true", help="Disable text to speech")
 
     def cmdparser(self, parser):
         subparser = parser.add_parser('say', bot=self._bot)
@@ -26,11 +28,13 @@ class Say(Plugin):
             for peer in self._bot.get_peers(self):
                 self._bot.peer_forward_msg(self, peer, raw_msg)
 
-        tts = gTTS(text=args.text, lang=args.lang)
-        with NamedTemporaryFile() as f:
-            tts.write_to_fp(f)
-            f.flush()
-            cmd = ['play', '-t', 'mp3', f.name]
-            if not origin_peer:
-                self._bot.write(args.text)
-            subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if self.tts:
+            tts = gTTS(text=args.text, lang=args.lang)
+            with NamedTemporaryFile() as f:
+                tts.write_to_fp(f)
+                f.flush()
+                cmd = ['play', '-t', 'mp3', f.name]
+                subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        if not origin_peer:
+            self._bot.write(args.text)
